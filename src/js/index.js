@@ -13,8 +13,6 @@ class Ball {
     this.speedy = o.speedy || _.random(-.1, .9)
     this.fps = o.fps || 60
     this.color = o.color || `rgb(${_.random(0, 255)},${_.random(0, 255)},${_.random(0, 255)})`
-    console.log(this.speedx);
-
   }
   _init() {
     canvas.height = $(window).height()
@@ -22,7 +20,6 @@ class Ball {
     $(window).on("resize", this._init)
   }
   updata() {
-
     if (this.opa <= 0.8) {
       this.opa += .001
     }
