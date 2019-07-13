@@ -5,4 +5,12 @@ canvas{
   background-color: #1a2a3a;
   display: block;
   overflow: hidden;
+  position: fixed;
+  z-index: -999;
+}
+h1{
+  color:white;
+  i{
+    color:rebeccapurple;
+  }
 }

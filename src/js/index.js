@@ -1,5 +1,3 @@
-let $ = require("jquery")
-let _ = require("underscore")
 let canvas = $("canvas")[0]
 let c = canvas.getContext("2d")
 class Ball {
@@ -22,12 +20,6 @@ class Ball {
     canvas.height = $(window).height()
     canvas.width = $(window).width()
     $(window).on("resize", this._init)
-  }
-  gca() {
-    return `rgba(${_.random(0, 255)},${_.random(0, 255)},${_.random(0, 255)},${_.random(5, 10) / 10})`
-  }
-  gc() {
-    return `rgb(${_.random(0, 255)},${_.random(0, 255)},${_.random(0, 255)})`
   }
   updata() {
 
@@ -57,8 +49,8 @@ class Ball {
     c.fill()
   }
 }
-let arr = []
-for (let i = 0; i < 30; i++) {
+let arr = [];
+for (let i = 0; i < 20; i++) {
   arr.push(new Ball({
     speedx: _.random(-5, 5) / 10,
     speedy: _.random(-5, 5) / 10,

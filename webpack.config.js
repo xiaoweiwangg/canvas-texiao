@@ -8,7 +8,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js"
+    filename: "js/bundle.js"
   },
   module: {
     rules: [
@@ -43,12 +43,12 @@ module.exports = {
       filename: "index.html"
     }),
     new mc({
-      filename: "canvas.css"
+      filename: "css/canvas.css"
     })
   ],
   devServer:{
     progress:true,
-    port:8090,
+    port:8091,
     inline:true,
     open:true,
     compress:true,
