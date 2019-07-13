@@ -1,0 +1,10 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+canvas {
+  display: -webkit-box;
+  display: flex;
+  background-color: #1a2a3a; }
+
