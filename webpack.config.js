@@ -40,7 +40,7 @@ module.exports = {
   plugins: [
     new html({
       template: "./src/demo/index.html",
-      filename: "canvas.html"
+      filename: "index.html"
     }),
     new mc({
       filename: "canvas.css"
