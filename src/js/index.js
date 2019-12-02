@@ -1,62 +1,40 @@
-let canvas = $("canvas")[0]
-let c = canvas.getContext("2d")
-class Ball {
-  constructor(o) {
-    this._init()
-    this.r = o.r || _.random(60, 100)
-    this.x = o.x || _.random(this.r, canvas.width)
-    this.y = o.y || _.random(this.r, canvas.height)
-    this.sa = o.sa || 0
-    this.ea = o.ea || 360
-    this.opa = o.opa || 0
-    this.speedx = o.speedx || _.random(-.1, .9)
-    this.speedy = o.speedy || _.random(-.1, .9)
-    this.fps = o.fps || 60
-    this.color = o.color || `rgb(${_.random(0, 255)},${_.random(0, 255)},${_.random(0, 255)})`
-  }
-  _init() {
-    canvas.height = $(window).height()
-    canvas.width = $(window).width()
-    $(window).on("resize", this._init)
-  }
-  updata() {
-    if (this.opa <= 0.8) {
-      this.opa += .001
-    }
-    if (this.x <= 0-this.r || this.x >= canvas.width+this.r || this.y <= 0-this.r || this.y >= canvas.height+this.r) {
-      this.opa =0.01
-      this.x = _.random(-this.r, canvas.width)
-      this.y = _.random(-this.r, canvas.height)
-    }else{
-      this.x += this.speedx
-      this.y += this.speedy
-    }
-  }
-  draw(c) {
-    c.beginPath()
-    c.arc(
-      this.x,
-      this.y,
-      this.r,
-      this.sa,
-      this.ea,
-    )
-    c.globalAlpha = this.opa
-    c.fillStyle = this.color;
-    c.fill()
-  }
+import "../css/index.scss";
+// import "hotcss"
+import fast from "fastclick"
+fast.attach(document.body)
+import "./jquery.aniview"
+import clunbo from "./lunbo"
+$(function(){
+    $(".pre").on("click",()=>{
+        $(".t_top ul").css({
+            transform:"translateX(-233px)"
+        })
+    })
+    $(".next").on("click",()=>{
+        $(".t_top ul").css({
+            transform:"translateX(0px)"
+        })
+    })
+})
+var options = {
+    animateThreshold: 10,
+    scrollPollInterval: 0
 }
-let arr = [];
-for (let i = 0; i < 20; i++) {
-  arr.push(new Ball({
-    speedx: _.random(-5, 5) / 10,
-    speedy: _.random(-5, 5) / 10,
-  }))
-}
-setInterval(() => {
-  c.clearRect(0, 0, canvas.width, canvas.height);
-  for (let i = 0; i < arr.length; i++) {
-    arr[i].draw(c)
-    arr[i].updata()
-  }
-}, 1000 / 60);
+$('.aniview').AniView(options); 
+$(document).ready(function () {
+    $.ajax({
+        url:"/lunbo",
+        type:"POST",
+        success:function(x){
+            console.log(x);
+            let l=new clunbo({data:x})
+            $(".swiper-wrapper").html(l.credom())
+            var mySwiper = new Swiper ('.swiper-container', {
+              loop: true,
+              autoplay:true,
+            })        
+        }
+    })
+   })
+   
+  
